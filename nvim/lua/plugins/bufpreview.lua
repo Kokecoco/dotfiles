@@ -1,3 +1,4 @@
 return {
-  'kat0h/bufpreview.vim'
+  'kat0h/bufpreview.vim',
+  build = 'deno task prepare'
 }
