@@ -122,4 +122,5 @@ fi
 export DENO_INSTALL="/home/kokecoco/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
+cd ~
 exec fish
