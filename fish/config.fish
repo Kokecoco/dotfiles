@@ -20,6 +20,11 @@ alias ..2="cd ../.."
 alias ..3="cd ../../.."
 
 alias vi="nvim"
+alias vim="nvim"
+alias e="nvim"
+alias code="nvim"
+alias atom="nvim"
+alias emacs="nvim"
 
 alias fishrc="nvim ~/.config/fish/config.fish"
 

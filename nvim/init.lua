@@ -1,6 +1,7 @@
 -- Load the settings
 require('config.base')
 require('config.options')
+local todos = require('todos') -- 先ほど作成したtodos.luaを読み込む
 
 -- Bootstrap lazy.nvim
 vim.loader.enable()
@@ -86,4 +87,55 @@ require('oil').setup{}
 require("CopilotChat").setup {
   debug = true, -- Enable debugging
   -- See Configuration section for rest
+}
+
+require('colorizer').setup()
+
+local function current_time()
+  return os.date("%H:%M")  -- 時:分:秒の形式で現在時刻を取得
+end
+
+local function total_lines()
+  return vim.fn.line('$')
+end
+
+require("lualine").setup{
+    options = {
+      icons_enabled = true,
+      theme = 'material',
+      component_separators = { left = '', right = ''},
+      section_separators = { left = '', right = ''},
+      disabled_filetypes = {
+        statusline = {},
+        winbar = {},
+      },
+      ignore_focus = {},
+      always_divide_middle = true,
+      globalstatus = false,
+      refresh = {
+        statusline = 1000,
+        tabline = 1000,
+        winbar = 1000,
+      }
+    },
+    sections = {
+      lualine_a = {'mode'},
+      lualine_b = {'branch', 'diff', 'diagnostics'},
+      lualine_c = {'filename'},
+      lualine_x = {{todos.get_top_todo, color = {fg="#FFFF99"}}, 'encoding', 'filetype', {total_lines, color={fg="#FF99FF"}}},
+      lualine_y = {'progress', {current_time, color={fg="#99FFFF"}}},
+      lualine_z = {'location'}
+    },
+    inactive_sections = {
+      lualine_a = {},
+      lualine_b = {},
+      lualine_c = {'filename'},
+      lualine_x = {'location'},
+      lualine_y = {},
+      lualine_z = {}
+    },
+    tabline = {},
+    winbar = {},
+    inactive_winbar = {},
+    extensions = {}
 }
