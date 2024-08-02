@@ -30,6 +30,7 @@ require("lazy").setup('plugins', {
 			task = "📌",
 			lazy = "💤 ",
     },
+
 	},
   checker = {
     enabled = true, -- automatic plugin update
@@ -99,6 +100,45 @@ local function total_lines()
   return vim.fn.line('$')
 end
 
+local function encouragement()
+  return [[頑張れ]]
+end
+
+local function lsp_clients()
+  local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+  if next(clients) == nil then return "LSPなし" end
+  local client_names = {}
+  for _, client in pairs(clients) do
+    table.insert(client_names, client.name)
+  end
+  return table.concat(client_names, ", ")
+end
+
+local function indent_style()
+  if vim.bo.expandtab then
+    return vim.bo.shiftwidth .. "スペース"
+  else
+    return vim.bo.tabstop .. "タブ"
+  end
+end
+
+-- カスタムコンポーネントを作成
+local function yank_register()
+  -- ヤンクレジスタの内容を取得
+  local yank_content = vim.fn.getreg('"')
+
+  -- 改行をスペースに置き換え
+  yank_content = yank_content:gsub("\n", " ")
+
+  -- 内容を10文字に短縮し、長ければ"..."を追加
+  if #yank_content > 10 then
+    yank_content = string.sub(yank_content, 1, 7) .. "..."
+  end
+
+  -- 表示する内容を返す
+  return yank_content ~= "" and yank_content or "ヤンクレジスタは空"
+end
+
 require("lualine").setup{
     options = {
       icons_enabled = true,
@@ -111,7 +151,7 @@ require("lualine").setup{
       },
       ignore_focus = {},
       always_divide_middle = true,
-      globalstatus = false,
+      globalstatus = true,
       refresh = {
         statusline = 1000,
         tabline = 1000,
@@ -120,17 +160,37 @@ require("lualine").setup{
     },
     sections = {
       lualine_a = {'mode'},
-      lualine_b = {'branch', 'diff', 'diagnostics'},
-      lualine_c = {'filename'},
-      lualine_x = {{todos.get_top_todo, color = {fg="#FFFF99"}}, 'encoding', 'filetype', {total_lines, color={fg="#FF99FF"}}},
-      lualine_y = {'progress', {current_time, color={fg="#99FFFF"}}},
-      lualine_z = {'location'}
+      lualine_b = {{encouragement, color={fg="#FF9999"}},'branch'},
+      lualine_c = {
+        {
+          'diff',
+          symbols = {added = ' ', modified = ' ', removed = ' '},
+        },
+        {
+          'diagnostics',
+          symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '}
+        },
+        {
+          indent_style
+        },
+      },
+      lualine_x = {
+        {todos.get_top_todo, color = {fg="#FFFF99"}},
+        'encoding', 'filetype', {'filename', path=1}},
+      lualine_y = {
+        {total_lines, color={fg="#FF99FF"}},
+        {yank_register, icon = '📋'},
+      },
+      lualine_z = {
+        {lsp_clients, color={fg="#99FF99", bg="#3c3c6c"}},
+        {current_time, color={fg="#99FFFF", bg="#3c3c6c"}},
+      }
     },
     inactive_sections = {
       lualine_a = {},
       lualine_b = {},
-      lualine_c = {'filename'},
-      lualine_x = {'location'},
+      lualine_c = {},
+      lualine_x = {},
       lualine_y = {},
       lualine_z = {}
     },
@@ -139,3 +199,31 @@ require("lualine").setup{
     inactive_winbar = {},
     extensions = {}
 }
+
+-- サイン定義
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+
+-- 各診断のサインを登録
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+-- nvim-lspconfigを使用してlua-language-serverを設定
+require('lspconfig').lua_ls.setup({
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' },  -- 'vim'をグローバルとして認識
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true), -- Neovimのランタイムファイルを参照
+        checkThirdParty = false,  -- 外部ライブラリのチェックを無効化（任意）
+      },
+      telemetry = {
+        enable = false,  -- テレメトリーを無効にする
+      },
+    },
+  },
+})
+

@@ -28,7 +28,10 @@ local options = {
   shiftwidth = 2,
 
   -- cursor
-  cursorline = true
+  cursorline = true,
+
+  -- global statusline
+  laststatus = 3
 }
 
 for k, v in pairs(options) do

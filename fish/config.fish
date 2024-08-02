@@ -25,6 +25,8 @@ alias code="nvim"
 alias emacs="nvim"
 alias nano="nvim"
 alias pico="nvim"
+alias edit="nvim"
+alias e="nvim"
 
 alias fishrc="nvim ~/.config/fish/config.fish"
 
@@ -35,3 +37,6 @@ alias ga="git add ."
 alias gc="git commit -m"
 alias gpush="git push"
 alias gpull="git pull"
+
+alias c="clear"
+alias reset="cd ~ && fish && clear"
