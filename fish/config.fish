@@ -40,3 +40,10 @@ alias gpull="git pull"
 
 alias c="clear"
 alias reset="cd ~ && fish && clear"
+
+alias nofish="bash --rcfile ~/nofish.bashrc"
+alias uclip="uclip.exe"
+alias clip="uclip.exe"
+
+source ~/dotfiles/fish/functions/auto_virtualenv.fish
+auto_virtualenv
