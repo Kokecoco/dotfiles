@@ -116,9 +116,9 @@ end
 
 local function indent_style()
   if vim.bo.expandtab then
-    return vim.bo.shiftwidth .. "スペース"
+    return vim.bo.shiftwidth .. "S"
   else
-    return vim.bo.tabstop .. "タブ"
+    return vim.bo.tabstop .. "T"
   end
 end
 
@@ -130,9 +130,11 @@ local function yank_register()
   -- 改行をスペースに置き換え
   yank_content = yank_content:gsub("\n", " ")
 
+  yank_content = yank_content:gsub("^%s+", "")
+
   -- 内容を10文字に短縮し、長ければ"..."を追加
-  if #yank_content > 10 then
-    yank_content = string.sub(yank_content, 1, 7) .. "..."
+  if #yank_content > 8 then
+    yank_content = string.sub(yank_content, 1, 8)
   end
 
   -- 表示する内容を返す
@@ -176,10 +178,10 @@ require("lualine").setup{
       },
       lualine_x = {
         {todos.get_top_todo, color = {fg="#FFFF99"}},
-        'encoding', 'filetype', {'filename', path=1}},
+        'encoding', 'filetype', 'filename'},
       lualine_y = {
         {total_lines, color={fg="#FF99FF"}},
-        {yank_register, icon = '📋'},
+        {yank_register},
       },
       lualine_z = {
         {lsp_clients, color={fg="#99FF99", bg="#3c3c6c"}},
