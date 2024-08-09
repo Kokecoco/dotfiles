@@ -4107,3 +4107,4 @@ if [ "$OSTYPE" = cygwin ]; then
 fi
 
 exec fish
+
