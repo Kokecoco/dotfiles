@@ -32,5 +32,9 @@ function cpp_run
         echo "Execution failed."
         return 1
     end
+
+    # 実行ファイルを削除
+    rm $outputfile
+    echo "Execution file $outputfile has been deleted."
 end
 
