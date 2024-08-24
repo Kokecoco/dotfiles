@@ -4106,4 +4106,7 @@ if [ "$OSTYPE" = cygwin ]; then
 	___git_complete git.exe __git_main
 fi
 
+. "$HOME/.cargo/env"
+
 exec fish
+source $HOME/.cargo/env

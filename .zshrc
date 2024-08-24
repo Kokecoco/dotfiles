@@ -11,7 +11,7 @@
 autoload -Uz colors ; colors
 
 # エディタをvimに設定
-export EDITOR=vim
+export EDITOR=nvim
 
 # Ctrl+Dでログアウトしてしまうことを防ぐ
 #setopt IGNOREEOF
@@ -217,29 +217,68 @@ alias -g GI='| grep -ri'
 # エイリアス
 alias lst='ls -ltr --color=auto'
 alias ls='ls --color=auto'
-alias la='ls -la --color=auto'
-alias ll='ls -l --color=auto'
+alias la='ls -a --color=auto'
+alias ll='ls -alF --color=auto'
+alias l="ls -l"
 
 alias du="du -Th"
 alias df="df -Th"
 alias su="su -l"
 alias so='source'
-alias vi='vim'
-alias vz='vim ~/.zshrc'
+alias vz='nvim ~/.zshrc'
 alias c='cdr'
 alias cp='cp -i'
 alias rm='rm -i'
 alias mkdir='mkdir -p'
-alias ..='c ../'
+
 alias back='pushd'
 alias diff='diff -U1'
 
 alias tma='tmux attach'
 alias tml='tmux list-window'
 
-alias dki="docker run -i -t -P"
-alias dex="docker exec -i -t"
-alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias ..1="cd .."
+alias ..2="cd ../.."
+alias ..3="cd ../../.."
+
+alias vi="nvim"
+alias vim="nvim"
+alias code="nvim"
+alias emacs="nvim"
+alias nano="nvim"
+alias pico="nvim"
+alias edit="nvim"
+alias e="nvim"
+
+alias fishrc="nvim ~/.config/fish/config.fish"
+
+alias nvimrc="nvim ~/.config/nvim/init.lua"
+alias nvimplugins="cd ~/.config/nvim/lua/plugins && nvim"
+
+alias ga="git add ."
+alias gc="git commit -m"
+alias gpush="git push"
+alias gpull="git pull"
+
+alias c="clear"
+alias reset="clear && cd ~ && fish"
+
+alias nofish="bash --rcfile ~/nofish.bashrc"
+
+alias uclip="uclip.exe"
+alias clip="uclip.exe"
+
+alias rtty=" ~/go/bin/rtty run bash -p 8080 -v --font \"HackGen Console NF\""
+
+alias pyserve="python -m http.server 8000"
+
+alias toja="trans -b en:ja"
+
+alias gip="curl -s http://ifconfig.me"
+
 
 # -----------------------------
 # Plugin
@@ -359,3 +398,8 @@ function gs() {
   cut -d: -f1
 }
 
+
+. "$HOME/.cargo/env"
+
+# zplug のメッセージを非表示にする
+export ZPLUG_LOAD_VERBOSE=false
