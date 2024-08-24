@@ -345,7 +345,7 @@ if ! zplug check --verbose; then
 fi
 
 # コマンドをリンクして、PATH に追加し、プラグインは読み込む
-zplug load --verbose
+zplug load --verbose > /dev/null 2>&1
 
 # -----------------------------
 # PATH
@@ -402,4 +402,6 @@ function gs() {
 . "$HOME/.cargo/env"
 
 # zplug のメッセージを非表示にする
-export ZPLUG_LOAD_VERBOSE=false
+export ZPLUG_LOG_LOAD_SUCCESS=false
+export ZPLUG_LOG_LOAD_FAILURE=false
+
