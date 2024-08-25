@@ -4108,5 +4108,4 @@ fi
 
 . "$HOME/.cargo/env"
 
-exec fish
-source $HOME/.cargo/env
+exec zsh -f -c "source ~/fish.zshrc"

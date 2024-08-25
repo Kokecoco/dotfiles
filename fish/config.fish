@@ -105,3 +105,5 @@ end
 alias kitsserve="rm -rf KITs3 && cp -r KITs/ KITs3/ && cd KITs3 && rm -rf .git .github  && jekyll serve && cd .."
 
 alias reboot="wsl.exe --shutdown"
+
+alias nfzsh="zsh -f -c \"source ~/nofish.zshrc\""
