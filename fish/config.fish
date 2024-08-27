@@ -6,6 +6,7 @@ set -g fish_prompt_pwd_dir_length 0
 
 # Created by `pipx` on 2024-07-22 11:47:34
 set PATH $PATH /home/kokecoco/.local/bin
+set PATH $PATH /home/kokecoco/lua-language-server/bin
 
 alias l="ls -l --color=auto"
 alias ls="ls --color=auto"
@@ -107,3 +108,7 @@ alias kitsserve="rm -rf KITs3 && cp -r KITs/ KITs3/ && cd KITs3 && rm -rf .git .
 alias reboot="wsl.exe --shutdown"
 
 alias nfzsh="zsh -f -c \"source ~/nofish.zshrc\""
+
+alias luamake="/home/kokecoco/lua-language-server/3rd/luamake/luamake"
+
+source ~/dotfiles/fish/functions.fish

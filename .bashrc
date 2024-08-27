@@ -124,6 +124,8 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 
 cd ~
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/lua-language-server:$PATH"
+
 eval "$(rbenv init -)"
 
 # bash/zsh completion support for core Git.
@@ -4107,5 +4109,10 @@ if [ "$OSTYPE" = cygwin ]; then
 fi
 
 . "$HOME/.cargo/env"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+
+export N_PREFIX=$HOME/n
 
 exec zsh -f -c "source ~/fish.zshrc"

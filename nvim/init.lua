@@ -213,6 +213,7 @@ end
 
 -- nvim-lspconfigを使用してlua-language-serverを設定
 require('lspconfig').lua_ls.setup({
+  cmd = { "lua-language-server" },
   settings = {
     Lua = {
       diagnostics = {
@@ -230,7 +231,7 @@ require('lspconfig').lua_ls.setup({
 })
 
 require('mason-null-ls').setup({
-    ensure_installed = { 'prettierd', 'rubocop', 'black' },
+    ensure_installed = { 'prettierd', 'black' },
     handlers = {},
 })
 

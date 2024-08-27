@@ -1,0 +1,27 @@
+alias l="ls -l --color=auto"
+alias ls="ls --color=auto"
+alias ll="ls -alF --color=auto"
+alias la="ls -a --color=auto"
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias ..1="cd .."
+alias ..2="cd ../.."
+alias ..3="cd ../../.."
+
+alias vi="nvim"
+alias vim="nvim"
+alias code="nvim"
+alias emacs="nvim"
+alias nano="nvim"
+alias pico="nvim"
+alias edit="nvim"
+alias e="nvim"
+
+alias c="clear"
+
+alias ga="git add ."
+alias gc="git commit -m"
+alias gpush="git push"
+alias gpull="git pull"
