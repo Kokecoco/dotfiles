@@ -69,17 +69,21 @@ end
 set -g DIR_STACK
 
 function cd
+  set OLDPWD_TEMP $PWD
     if test (count $argv) -eq 0
         # 引数なしで呼ばれた場合、ホームディレクトリに移動
         builtin cd ~
     else if test "$argv[1]" = '-'
-        # 'cd -' の処理を保持 (前のディレクトリに戻る)
-        builtin cd -
+              # 'cd -' の処理 ($OLDPWD に移動)
+        if test -n "$OLDPWD"
+            builtin cd $OLDPWD
+        end
     else
         # その他の引数がある場合は通常のcdを実行
         builtin cd $argv
     end
 
+    set OLDPWD $OLDPWD_TEMP
     # ディレクトリ移動後、現在のディレクトリを履歴スタックに保存
     set -g DIR_STACK $PWD $DIR_STACK
 end
