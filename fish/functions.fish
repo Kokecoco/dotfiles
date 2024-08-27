@@ -65,11 +65,30 @@ function copy
     pbcopy < $argv[1]
 end
 
-# 最近使ったディレクトリに移動
+# グローバル変数としてディレクトリ履歴を保存
+set -g DIR_STACK
+
+function cd
+    if test (count $argv) -eq 0
+        # 引数なしで呼ばれた場合、ホームディレクトリに移動
+        builtin cd ~
+    else if test "$argv[1]" = '-'
+        # 'cd -' の処理を保持 (前のディレクトリに戻る)
+        builtin cd -
+    else
+        # その他の引数がある場合は通常のcdを実行
+        builtin cd $argv
+    end
+
+    # ディレクトリ移動後、現在のディレクトリを履歴スタックに保存
+    set -g DIR_STACK $PWD $DIR_STACK
+end
+
 function cdh
-    set dir (dirs -v | fzf | awk '{print $2}')
+    # fzfでディレクトリ履歴から選択
+    set dir (printf "%s\n" $DIR_STACK | fzf)
     if test -n "$dir"
-        cd $dir
+        builtin cd $dir
     end
 end
 
