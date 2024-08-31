@@ -192,3 +192,17 @@ function gitmoji_commit
     end
 end
 
+function gcof
+    set branch (git branch -a --format="%(refname:short)" | fzf)
+    if test -n "$branch"
+        if string match -q "remotes/" $branch
+            # リモートブランチの場合
+            set -l new_branch (string replace "remotes/origin/" "" $branch)
+            git checkout -b $new_branch $branch
+        else
+            # ローカルブランチの場合
+            git checkout $branch
+        end
+    end
+end
+
