@@ -195,9 +195,9 @@ end
 function gcof
     set branch (git branch -a --format="%(refname:short)" | fzf)
     if test -n "$branch"
-        if string match -q "remotes/" $branch
+        if string match -q "origin/" $branch
             # リモートブランチの場合
-            set -l new_branch (string replace "remotes/origin/" "" $branch)
+            set new_branch (string replace "origin/" "" $branch)
             git checkout -b $new_branch $branch
         else
             # ローカルブランチの場合
