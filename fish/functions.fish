@@ -142,3 +142,53 @@ function mem
 end
 
 
+function gitmoji_commit
+    # Gitmojiのリストを定義
+    set gitmoji_list "
+    ✨  :sparkles: 新機能の追加
+    🐛  :bug: バグ修正
+    📝  :memo: ドキュメントの更新
+    🎨  :art: コードの構造・書式の改善
+    🔥  :fire: コードやファイルの削除
+    🚀  :rocket: パフォーマンスの改善
+    💄  :lipstick: UIやスタイルの改善
+    🔒  :lock: セキュリティの向上
+    🚑  :ambulance: 緊急修正
+    🔧  :wrench: 設定ファイルの変更
+    ⚡️  :zap: 小さな機能の追加
+    🩹 :adhesive_bandage: 小規模な修正
+    "
+
+    # コミットメッセージのプレフィックスのリストを定義
+    set prefix_list "
+    feat: 新機能
+    fix: バグ修正
+    docs: ドキュメント修正
+    style: コードの書式修正（機能に影響しない変更）
+    refactor: リファクタリング
+    perf: パフォーマンス改善
+    test: テストの追加や修正
+    chore: その他の変更（ビルドやツール、依存関係のアップデートなど）
+    hotfix: 緊急修正
+    "
+
+    # Gitmojiをfzfで選択
+    set selected_gitmoji (echo $gitmoji_list | fzf | awk '{print $1}')
+
+    # コミットメッセージのプレフィックスをfzfで選択
+    set selected_prefix (echo $prefix_list | fzf | awk '{print $1}')
+
+    # コミットメッセージをユーザーに入力してもらう
+    if test -n "$selected_gitmoji" -a -n "$selected_prefix"
+        read -P "コミットメッセージを入力してください: " commit_message
+        if test -n "$commit_message"
+            # 選択されたGitmoji、プレフィックス、入力されたメッセージでコミット
+            git commit -m "$selected_gitmoji $selected_prefix $commit_message"
+        else
+            echo "コミットメッセージが入力されませんでした。"
+        end
+    else
+        echo "Gitmojiまたはプレフィックスの選択がキャンセルされました。"
+    end
+end
+
