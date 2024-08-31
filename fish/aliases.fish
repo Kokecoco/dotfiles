@@ -58,8 +58,7 @@ alias nfzsh="zsh -f -c \"source ~/nofish.zshrc\""
 
 alias luamake="/home/kokecoco/lua-language-server/3rd/luamake/luamake"
 
-alias gcof='git checkout $(git branch --format="%(refname:short)" | fzf)'
-
+alias gcof 'git checkout (git branch -a --format="%(refname:short)" | fzf)'
 alias gcoh 'git checkout (git log --oneline --reverse | fzf | awk \'{print $1}\')'
 alias vrecent 'vim (cat ~/.bash_history | grep -E "vim|nvim" | fzf)'
 
