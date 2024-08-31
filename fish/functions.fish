@@ -192,17 +192,16 @@ function gitmoji_commit
     end
 end
 
-function gcof
-    set branch (git branch -a --format="%(refname:short)" | fzf)
+function gf
+    set -l branch (git branch -r | fzf --prompt "Select remote branch: ")
     if test -n "$branch"
-        if string match -q "origin/" $branch
-            # リモートブランチの場合
-            set new_branch (string replace "origin/" "" $branch)
-            git checkout -b $new_branch $branch
+        set -l local_branch (string trim -l "origin/" $branch)
+        if not git rev-parse --verify $local_branch^/dev/null 2>/dev/null
+            echo "Fetching and checking out new branch $local_branch..."
+            git checkout -b $local_branch $branch
         else
-            # ローカルブランチの場合
-            git checkout $branch
+            echo "Branch $local_branch already exists locally."
+            git checkout $local_branch
         end
     end
 end
-
