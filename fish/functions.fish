@@ -193,9 +193,12 @@ function gitmoji_commit
 end
 
 function gf
-    set -l branch (git branch -r | fzf --prompt "Select remote branch: ")
+    set -l branch (git branch -r | fzf --prompt "Select remote branch: " | string trim)
     if test -n "$branch"
-        set -l local_branch (string trim -l "origin/" $branch)
+        # リモートブランチ名から 'origin/' プレフィックスを取り除く
+        set -l local_branch (string replace -r '^origin/' '' $branch)
+
+        # ローカルブランチが存在するか確認
         if not git rev-parse --verify $local_branch^/dev/null 2>/dev/null
             echo "Fetching and checking out new branch $local_branch..."
             git checkout -b $local_branch $branch
