@@ -208,3 +208,16 @@ function gf
         end
     end
 end
+
+function oweb
+    set htmlfile $argv[1]
+    set basename (basename $htmlfile .html)
+    nvim $htmlfile assets/css/$basename.css assets/js/$basename.js
+end
+
+function gaweb
+    set htmlfile $argv[1]
+    set basename (basename $htmlfile .html)
+    git add $htmlfile assets/css/$basename.css assets/js/$basename.js
+end
+

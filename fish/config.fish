@@ -10,3 +10,4 @@ set PATH $PATH /home/kokecoco/lua-language-server/bin
 
 source ~/dotfiles/fish/aliases.fish
 source ~/dotfiles/fish/functions.fish
+thefuck --alias | source
