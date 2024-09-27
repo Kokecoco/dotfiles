@@ -75,7 +75,7 @@ alias kproc 'kill -9 (ps -ef | fzf | awk \'{print $2}\')'
 
 alias gcof 'git checkout $(git branch --format="%(refname:short)" | fzf)'
 
-alias nvimalias "nvim ~/dotfiles/fish/aliases.fish"
-alias nvimfunc "nvim ~/dotfiles/fish/functions.fish"
+alias fishalias "nvim ~/dotfiles/fish/aliases.fish"
+alias fishfunc "nvim ~/dotfiles/fish/functions.fish"
 
 alias gmc "gitmoji_commit"

@@ -129,9 +129,9 @@ function mem
         used_bar=int(used_p/100*bar_size);
         free_bar=int(free_p/100*bar_size);
         
-        used_bar_str="";
+        used_bar_str=;
         for (i=0; i<used_bar; i++) {used_bar_str=used_bar_str "#";}
-        free_bar_str="";
+        free_bar_str=;
         for (i=0; i<free_bar; i++) {free_bar_str=free_bar_str "#";}
         
         printf "+-------------------------------------------------------+\n";
@@ -219,5 +219,95 @@ function gaweb
     set htmlfile $argv[1]
     set basename (basename $htmlfile .html)
     git add $htmlfile assets/css/$basename.css assets/js/$basename.js
+end
+
+
+function kits
+    # プロジェクトディレクトリに移動
+    cd /home/kokecoco/projects/KITs/
+
+    # ANSIエスケープシーケンスを使って色を設定
+    set reset "\033[0m"
+    set bold "\033[1m"
+    set green "\033[32m"
+    set blue "\033[34m"
+    set red "\033[31m"
+
+    # figletでメッセージを表示
+    echo -en "$bold$green"
+    figlet -w 80 'Welcome to KITs Project!'
+    echo -en "$reset\n"
+
+    # git pullを実行
+    echo -en "$blue"
+    echo -n "== Pulling latest changes from Git =="
+    echo -e "$reset"
+    git pull
+    echo
+
+    # lsでディレクトリの内容を表示
+    echo -en "$blue"
+    echo -n "== Current Directory Contents =="
+    echo -e "$reset"
+    ls
+    echo
+
+    # git statusを表示
+    echo -en "$blue"
+    echo -n "== Git Status =="
+    echo -e "$reset"
+    git status
+    echo
+
+    # メニューの表示をループで繰り返す
+    while true
+        # メニューを表示
+        echo -en "$green"
+        echo -n "== Choose an option: "
+        echo -e "$reset"
+
+        echo -en "$green"
+        echo -n "1) Open Neovim"
+        echo -e "$reset"
+
+        echo -en "$green"
+        echo -n "2) Run Git Command"
+        echo -e "$reset"
+
+        echo -en "$green"
+        echo -n "3) View All Files With Information"
+        echo -e "$reset"
+
+        echo -en "$green"
+        echo -n "4) Exit"
+        echo -e "$reset"
+
+        # ユーザーの入力を取得
+        echo -en "$green"
+        read -p "echo 'Select an option [1-4]: '" choice
+        echo -e "$reset"
+
+        switch $choice
+            case 1
+                nvim
+                return
+            case 2
+                echo -en "$green"
+                read -p "echo 'Enter Git command: '" git_command
+                echo -e "$reset"
+                eval "git $git_command"
+            case 3
+                ll
+            case 4
+                echo -en "$green"
+                echo -n "Exiting..."
+                echo -e "$reset"
+                return
+            case '*'
+                echo -en "$red"
+                echo -n "Invalid option. Please try again."
+                echo -e "$reset"
+        end
+    end
 end
 
