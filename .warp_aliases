@@ -1,0 +1,16 @@
+kits /home/kokecoco/projects/KITs
+dot /home/kokecoco/dotfiles
+c /mnt/c
+d /mnt/d
+winUser /mnt/c/Users/user
+desktop /mnt/c/Users/user/Desktop
+school /mnt/c/Users/user/Desktop/school
+memo /home/kokecoco/projects/memo
+add .
+list .
+help .
+remove .
+update .
+rename .
+
+proj /home/kokecoco/projects
