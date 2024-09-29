@@ -4,8 +4,7 @@ function fm
     set destination $argv[3]
 
     function confirm
-        echo -n "$argv[1] $argv[2] を実行してもよろしいですか？ (y/n): "
-        read -l response
+        read -p "echo '$argv[2]を$argv[1]してもよろしいですか？ (y/n): '" -l response
         if test $response = "y"
             return 0
         else
@@ -107,8 +106,7 @@ function fm
         case "sd" # selective delete
             echo "削除するファイルまたはディレクトリを $source から選択してください:"
             ls $source
-            echo -n "削除するファイル名を入力してください: "
-            read -l files
+            read -p "echo '削除するファイル名を入力してください: '" -l files
             if confirm "削除" $files
                 rm -rv $source/$files
                 echo "選択されたファイルを削除しました。"
@@ -123,8 +121,7 @@ function fm
 
         # ファイル検索
         case "find" # find
-            echo -n "検索するファイル名を $source で入力してください: "
-            read -l filename
+            read -p "echo '検索するファイル名を入力してください: '" -l filename
             find $source -name "$filename" -print
 
         # 特定の拡張子のファイルをリスト表示
