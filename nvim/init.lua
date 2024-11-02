@@ -1,3 +1,4 @@
+
 -- Load the settings
 require('config.base')
 require('config.options')
@@ -262,4 +263,8 @@ null_ls.setup({ -- nul-lsを初期化
 })
 
 vim.g.pydocstring_doq_path = "/home/kokecoco/.local/bin/doq"
+
+vim.api.nvim_create_user_command('Showdiag', function()
+    vim.diagnostic.setqflist()
+end, {})
 
