@@ -4115,4 +4115,10 @@ export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
 export N_PREFIX=$HOME/n
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 exec zsh -f -c "source ~/fish.zshrc"
+
+
