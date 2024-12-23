@@ -82,6 +82,8 @@ vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true 
 vim.api.nvim_set_keymap('n', '<C-w>', ':wq<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-W>', ':wqa<CR>', { noremap = true, silent = true })
 
+vim.api.nvim_set_keymap('n', '<ESC><ESC>', ':nohlsearch<CR>', { noremap = true, silent = true })
+
 require('bufferline').setup{}
 require('telescope').setup{}
 require('oil').setup{}

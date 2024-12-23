@@ -11,3 +11,11 @@ set PATH $PATH /home/kokecoco/lua-language-server/bin
 source ~/dotfiles/fish/aliases.fish
 source ~/dotfiles/fish/functions.fish
 thefuck --alias | source
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f /home/kokecoco/anaconda3/bin/conda
+    eval /home/kokecoco/anaconda3/bin/conda "shell.fish" "hook" $argv | source
+end
+# <<< conda initialize <<<
+
