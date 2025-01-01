@@ -270,3 +270,17 @@ vim.api.nvim_create_user_command('Showdiag', function()
     vim.diagnostic.setqflist()
 end, {})
 
+-- ユーザー定義の terminal 関数
+local function terminal(cmd)
+  vim.cmd('terminal ' .. cmd)
+end
+
+-- Google 検索用のカスタムコマンド
+vim.api.nvim_create_user_command(
+  'Google',
+  function(opts)
+    terminal('w3m google.com/search\\?q=' .. vim.fn.shellescape(opts.args))
+  end,
+  { nargs = 1 }
+)
+
