@@ -284,3 +284,28 @@ vim.api.nvim_create_user_command(
   { nargs = 1 }
 )
 
+-- ポモドーロタイマーのモジュールをロード
+local pomodoro = require("pomodoro")
+
+-- キーリマッピングを設定
+vim.keymap.set("n", "<leader>ps", function()
+    pomodoro.start(25, 5) -- 25分の作業時間と5分の休憩時間
+    print("Pomodoro timer started: 25 minutes of work, 5 minutes of break.")
+end, { desc = "Start Pomodoro Timer" })
+
+vim.keymap.set("n", "<leader>pp", function()
+    pomodoro.stop()
+    print("Pomodoro timer stopped.")
+end, { desc = "Stop Pomodoro Timer" })
+
+vim.keymap.set("n", "<leader>pc", function()
+    -- ユーザー入力を取得してカスタム時間を設定
+    local work_time = tonumber(vim.fn.input("Work time (minutes): ", "25"))
+    local break_time = tonumber(vim.fn.input("Break time (minutes): ", "5"))
+    if work_time and break_time then
+        pomodoro.start(work_time, break_time)
+        print("Pomodoro timer started: " .. work_time .. " minutes of work, " .. break_time .. " minutes of break.")
+    else
+        print("Invalid input. Please enter numeric values.")
+    end
+end, { desc = "Start Custom Pomodoro Timer" })

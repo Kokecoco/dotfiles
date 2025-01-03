@@ -63,7 +63,7 @@ set showtabline=2
 command! -nargs=* Grep call s:grep_all(<f-args>)
 let g:searched_dir = ""
 let g:searched_filetype = ""
- 
+
 function s:grep_all(...) abort
 	if a:0 < 1
 		call s:find_dir("\"*.*\"", "\./")
