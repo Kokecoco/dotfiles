@@ -84,6 +84,9 @@ vim.api.nvim_set_keymap('n', '<C-W>', ':wqa<CR>', { noremap = true, silent = tru
 
 vim.api.nvim_set_keymap('n', '<ESC><ESC>', ':nohlsearch<CR>', { noremap = true, silent = true })
 
+vim.api.nvim_set_keymap('n', '<leader>rb', ':lua require("rebellion").start()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>rq', ':lua require("rebellion").stop()<CR>', { noremap = true, silent = true })
+
 require('bufferline').setup{}
 require('telescope').setup{}
 require('oil').setup{}
