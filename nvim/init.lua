@@ -309,3 +309,17 @@ vim.keymap.set("n", "<leader>pc", function()
         print("Invalid input. Please enter numeric values.")
     end
 end, { desc = "Start Custom Pomodoro Timer" })
+
+vim.api.nvim_create_user_command(
+  'OpenInWindows',
+  function()
+    local filepath = vim.fn.expand('%:p') -- 現在のファイルのフルパスを取得
+    if filepath == '' then
+      print("ファイルが保存されていません")
+      return
+    end
+    vim.fn.system('wslview ' .. filepath)
+  end,
+  { nargs = 0 }
+)
+
