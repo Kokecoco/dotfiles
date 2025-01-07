@@ -2,4 +2,5 @@ github-copilot/hosts.json
 gh/hosts.yml
 lazy-lock.json
 .gitignore
-
+astro/
+configstore/
