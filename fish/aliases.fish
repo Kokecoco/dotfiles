@@ -77,3 +77,5 @@ alias fishalias "nvim ~/dotfiles/fish/aliases.fish"
 alias fishfunc "nvim ~/dotfiles/fish/functions.fish"
 
 alias gmc "gitmoji_commit"
+
+alias :q "exit"
