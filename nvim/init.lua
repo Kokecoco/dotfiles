@@ -144,6 +144,15 @@ local function yank_register()
   return yank_content ~= "" and yank_content or "ヤンクレジスタは空"
 end
 
+
+local navic = require("nvim-navic")
+
+require("lspconfig").clangd.setup {
+    on_attach = function(client, bufnr)
+        navic.attach(client, bufnr)
+    end
+}
+
 require("lualine").setup{
     options = {
       icons_enabled = true,
@@ -165,8 +174,16 @@ require("lualine").setup{
     },
     sections = {
       lualine_a = {'mode'},
-      lualine_b = {{encouragement, color={fg="#FF9999"}},'branch'},
+      lualine_b = {'branch', {
+          indent_style
+        },
+},
       lualine_c = {
+        {
+          "navic",
+           color_correction = nil, -- Can be nil, "static" or "dynamic". This option is useful only when you have highlights enabled.
+           navic_opts = nil  -- lua table with same format as setup's option. All options except "lsp" options take effect when set here.
+        },
         {
           'diff',
           symbols = {added = ' ', modified = ' ', removed = ' '},
@@ -174,9 +191,6 @@ require("lualine").setup{
         {
           'diagnostics',
           symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '}
-        },
-        {
-          indent_style
         },
       },
       lualine_x = {
