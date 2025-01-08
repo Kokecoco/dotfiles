@@ -13,5 +13,7 @@ return {
   },
   config = function()
     require('telescope').setup{}
-  end
+    require('oil').setup{}
+  end,
+  cmd = "Oil"
 }

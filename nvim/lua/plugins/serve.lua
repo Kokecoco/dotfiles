@@ -5,4 +5,5 @@ return {
       -- serve.luaをロード
       require("serve")
   end,
+  event = "BufReadPost",
 }

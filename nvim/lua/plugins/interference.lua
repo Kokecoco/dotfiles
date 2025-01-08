@@ -12,4 +12,5 @@ return {
       stop_shortcut_key = "<leader>rq"
     })
   end,
+  event = "BufReadPost",
 }

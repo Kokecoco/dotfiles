@@ -3,4 +3,5 @@ return {
   opts = {
     ignore = nil,
   },
+  event = "BufReadPost",
 }

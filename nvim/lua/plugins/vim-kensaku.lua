@@ -1,5 +1,14 @@
 return {
-  {"lambdalisue/vim-kensaku"},
-  {"lambdalisue/vim-kensaku-search"},
-  {"yuki-yano/fuzzy-motion.vim"},
+  {
+    "lambdalisue/vim-kensaku",
+    event = "BufReadPost",
+  },
+  {
+    "lambdalisue/vim-kensaku-search",
+    event = "BufReadPost",
+  },
+  {
+    "yuki-yano/fuzzy-motion.vim",
+    event = "BufReadPost",
+  },
 }

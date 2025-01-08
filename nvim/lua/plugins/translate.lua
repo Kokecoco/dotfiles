@@ -4,4 +4,5 @@ return {
   config = function()
     require("translate").setup()
   end,
+  event = "BufReadPost",
 }

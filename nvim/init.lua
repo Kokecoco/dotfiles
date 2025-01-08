@@ -2,7 +2,6 @@
 -- Load the settings
 require('config.base')
 require('config.options')
-local todos = require('todos') -- 先ほど作成したtodos.luaを読み込む
 
 -- Bootstrap lazy.nvim
 vim.loader.enable()
@@ -85,15 +84,10 @@ vim.api.nvim_set_keymap('n', '<C-W>', ':wqa<CR>', { noremap = true, silent = tru
 vim.api.nvim_set_keymap('n', '<ESC><ESC>', ':nohlsearch<CR>', { noremap = true, silent = true })
 
 require('bufferline').setup{}
-require('telescope').setup{}
-require('oil').setup{}
 
-require("CopilotChat").setup {
-  debug = true, -- Enable debugging
-  -- See Configuration section for rest
-}
 
-require('colorizer').setup()
+
+
 
 local function current_time()
   return os.date("%H:%M")  -- 時:分:秒の形式で現在時刻を取得
@@ -101,10 +95,6 @@ end
 
 local function total_lines()
   return vim.fn.line('$')
-end
-
-local function encouragement()
-  return [[頑張れ]]
 end
 
 local function lsp_clients()
@@ -145,13 +135,7 @@ local function yank_register()
 end
 
 
-local navic = require("nvim-navic")
 
-require("lspconfig").clangd.setup {
-    on_attach = function(client, bufnr)
-        navic.attach(client, bufnr)
-    end
-}
 
 require("lualine").setup{
     options = {
@@ -194,7 +178,6 @@ require("lualine").setup{
         },
       },
       lualine_x = {
-        {todos.get_top_todo, color = {fg="#FFFF99"}},
         'encoding', 'filetype', 'filename'},
       lualine_y = {
         {total_lines, color={fg="#FF99FF"}},
@@ -248,7 +231,7 @@ require('lspconfig').lua_ls.setup({
 })
 
 require('mason-null-ls').setup({
-    ensure_installed = { 'prettierd', 'black' },
+    ensure_installed = { 'prettierd'},
     handlers = {},
 })
 
@@ -297,32 +280,6 @@ vim.api.nvim_create_user_command(
   end,
   { nargs = 1 }
 )
-
--- ポモドーロタイマーのモジュールをロード
-local pomodoro = require("pomodoro")
-
--- キーリマッピングを設定
-vim.keymap.set("n", "<leader>ps", function()
-    pomodoro.start(25, 5) -- 25分の作業時間と5分の休憩時間
-    print("Pomodoro timer started: 25 minutes of work, 5 minutes of break.")
-end, { desc = "Start Pomodoro Timer" })
-
-vim.keymap.set("n", "<leader>pp", function()
-    pomodoro.stop()
-    print("Pomodoro timer stopped.")
-end, { desc = "Stop Pomodoro Timer" })
-
-vim.keymap.set("n", "<leader>pc", function()
-    -- ユーザー入力を取得してカスタム時間を設定
-    local work_time = tonumber(vim.fn.input("Work time (minutes): ", "25"))
-    local break_time = tonumber(vim.fn.input("Break time (minutes): ", "5"))
-    if work_time and break_time then
-        pomodoro.start(work_time, break_time)
-        print("Pomodoro timer started: " .. work_time .. " minutes of work, " .. break_time .. " minutes of break.")
-    else
-        print("Invalid input. Please enter numeric values.")
-    end
-end, { desc = "Start Custom Pomodoro Timer" })
 
 vim.api.nvim_create_user_command(
   'OpenInWindows',

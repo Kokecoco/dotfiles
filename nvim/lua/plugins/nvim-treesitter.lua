@@ -7,5 +7,6 @@ return {
     highlight = {
       enable = true,
     },
-  }
+  },
+  event = { "BufRead", "BufNewFile" },
 }
