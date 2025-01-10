@@ -16,6 +16,8 @@ return {
       debug = true, -- Enable debugging
       -- See Configuration section for rest
       }
-    end
+    end,
+    cmd = "Copilot",
+    event = "InsertEnter"
   },
 }

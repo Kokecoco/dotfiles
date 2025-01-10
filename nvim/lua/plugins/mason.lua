@@ -11,4 +11,5 @@ return {
       end,
     }
   end,
+  event = "BufReadPre"
 }

@@ -1,5 +1,5 @@
 return {
-  {"mfussenegger/nvim-dap"},
-  {"rcarriga/nvim-dap-ui"},
-  {"mfussenegger/nvim-dap-python"}
+  {"mfussenegger/nvim-dap", event = "BufReadPost"},
+  {"rcarriga/nvim-dap-ui", event = "BufReadPost"},
+  {"mfussenegger/nvim-dap-python", ft = {"python"}}
 }

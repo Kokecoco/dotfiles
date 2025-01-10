@@ -9,4 +9,5 @@ return {
 			mode = "i"
                 },
 	},
+  event = "BufReadPost"
 }

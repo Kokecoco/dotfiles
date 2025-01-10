@@ -19,4 +19,5 @@ return {
     },
     auto_install = true,
   },
+  event = "BufReadPre"
 }
