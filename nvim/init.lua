@@ -83,6 +83,9 @@ vim.api.nvim_set_keymap('n', '<C-W>', ':wqa<CR>', { noremap = true, silent = tru
 
 vim.api.nvim_set_keymap('n', '<ESC><ESC>', ':nohlsearch<CR>', { noremap = true, silent = true })
 
+vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'gr', ':lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true })
+
 require('bufferline').setup{}
 
 
