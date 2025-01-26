@@ -3,7 +3,7 @@ return {
   dependencies = { "nvim-lua/plenary.nvim" },
   config = function()
       -- serve.luaをロード
-      require("serve")
+      require("serve").setup({wsl = true})
   end,
   event = "BufReadPost",
 }
