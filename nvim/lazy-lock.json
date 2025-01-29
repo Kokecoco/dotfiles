@@ -49,5 +49,6 @@
   "vim-kensaku": { "branch": "main", "commit": "67727c8cc81f45b3c3abc600ecfef6fba620eb88" },
   "vim-kensaku-search": { "branch": "main", "commit": "9568c2b174a9cf31bd9922c0a991117f4dd4f0c3" },
   "vim-pydocstring": { "branch": "master", "commit": "9da38e1bb70f5fc9f35ba5abf8ddada81fe2717a" },
-  "vim-test": { "branch": "master", "commit": "d317336c4022c272e74cfe11e277483183dd0b5f" }
+  "vim-test": { "branch": "master", "commit": "d317336c4022c272e74cfe11e277483183dd0b5f" },
+  "wsl_util.nvim": { "branch": "main", "commit": "d67334bcae0f8a5c7cd19b037ac6a350787920ca" }
 }
