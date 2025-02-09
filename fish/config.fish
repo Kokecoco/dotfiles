@@ -19,3 +19,9 @@ if test -f /home/kokecoco/anaconda3/bin/conda
 end
 # <<< conda initialize <<<
 
+set -x CUDA_PATH /usr/local/cuda
+set -x CUDNN_PATH /usr/local/cuda
+set -x CFLAGS "-I/usr/local/cuda/include"
+set -x LDFLAGS "-L/usr/local/cuda/lib64"
+set -x LIBRARY_PATH "/usr/local/cuda/lib64:$LIBRARY_PATH"
+set -x PATH "$CUDA_PATH/bin:$PATH"
