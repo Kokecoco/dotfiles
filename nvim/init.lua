@@ -307,3 +307,14 @@ vim.api.nvim_create_user_command(
   { nargs = 0 }
 )
 
+local z_sequence = { "zt", "zb", "zz" }
+local current_z_index = 1
+
+local function cycle_z()
+    local cmd = z_sequence[current_z_index]
+    vim.cmd('normal! ' .. cmd)
+    current_z_index = (current_z_index % #z_sequence) + 1
+end
+
+vim.keymap.set('n', 'zz', cycle_z, { noremap = true })
+
