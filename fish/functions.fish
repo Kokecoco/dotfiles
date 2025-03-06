@@ -326,3 +326,13 @@ function truecolor_test
         printf "\n";
     }'
 end
+
+function gk
+  git stash
+  gcof
+  git stash pop
+  ga
+  gmc
+  gpush
+  open https://github.com/Kaisei-Information-Tools/KITs
+end
