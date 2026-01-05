@@ -37,8 +37,8 @@ alias reset="clear && cd ~ && fish"
 
 alias nofish="bash --rcfile ~/nofish.bashrc"
 
-alias uclip="uclip.exe"
-alias clip="uclip.exe"
+alias uclip="~/uclip.exe"
+alias clip="~/uclip.exe"
 
 source ~/dotfiles/fish/functions/auto_virtualenv.fish
 auto_virtualenv
@@ -82,3 +82,6 @@ alias fishfunc "nvim ~/dotfiles/fish/functions.fish"
 alias gmc "gitmoji_commit"
 
 alias :q "exit"
+
+alias zellij "~/test/zellij"
+alias broot "~/test/broot"

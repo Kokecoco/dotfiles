@@ -1,0 +1,22 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "03cdd4b"
+hash = "36a484acf6a0a0219c543ccb4cee218f"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:vcs-files"
+rev = "03cdd4b"
+hash = "4ee57085277d616acfa0ef1fef37dc00"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:zoom"
+rev = "03cdd4b"
+hash = "a638db397a5a41d3f3a08a7427ccead1"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:diff"
+rev = "03cdd4b"
+hash = "492e4757f332e29f982556bf507e043c"
+
+[flavor]
+deps = []

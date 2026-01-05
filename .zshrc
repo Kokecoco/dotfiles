@@ -131,3 +131,9 @@ compinit
 source ~/dotfiles/aliases.zsh
 source ~/dotfiles/functions.zsh
 
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
+
+source /home/kokecoco/.config/broot/launcher/bash/br
