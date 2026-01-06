@@ -24,3 +24,15 @@ set -x CFLAGS "-I/usr/local/cuda/include"
 set -x LDFLAGS "-L/usr/local/cuda/lib64"
 set -x LIBRARY_PATH "/usr/local/cuda/lib64:$LIBRARY_PATH"
 set -x PATH "$CUDA_PATH/bin:$PATH"
+
+# zellij auto start (only for interactive shells)
+
+if status is-interactive
+    if type -q zellij
+        if not set -q ZELLIJ
+
+            zellij attach main; or zellij --session main
+        end
+    end
+end
+

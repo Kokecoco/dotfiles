@@ -336,3 +336,12 @@ function gk
   gpush
   open https://github.com/Kaisei-Information-Tools/KITs
 end
+
+function ghpr
+    gh pr list --limit 100 --json number,title \
+    | jq -r '.[] | "\(.number) \(.title)"' \
+    | fzf \
+    | awk '{print $1}' \
+    | xargs -I{} gh pr checkout {}
+end
+

@@ -85,3 +85,5 @@ alias :q "exit"
 
 alias zellij "~/test/zellij"
 alias broot "~/test/broot"
+
+alias pwsh "zellij action new-tab --name PowerShell"
