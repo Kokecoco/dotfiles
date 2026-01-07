@@ -30,8 +30,7 @@ set -x PATH "$CUDA_PATH/bin:$PATH"
 if status is-interactive
     if type -q zellij
         if not set -q ZELLIJ
-
-            zellij attach main; or zellij --session main
+            zellij
         end
     end
 end
